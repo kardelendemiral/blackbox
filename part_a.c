@@ -16,8 +16,8 @@ int main(int argc, char *argv[]){
 		exit(1);
 	}
 	else if (pid == 0){
-		FILE *fp = fopen("output.txt", "a");
-		int file = open("output.txt", O_WRONLY | O_APPEND, 0777);
+		FILE *fp = fopen(argv[2], "a");
+		int file = open(argv[2], O_WRONLY | O_APPEND, 0777);
 		if (file == -1) {
 			return 2;
 		}
@@ -25,7 +25,7 @@ int main(int argc, char *argv[]){
 		int file2 = dup2(file,1);
 		int file3 = dup2(file,2);
 
-		char* args[] = {"./blackbox", NULL};
+		char* args[] = {argv[1], NULL};
 		execv(args[0], args);
 	}
 
