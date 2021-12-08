@@ -57,8 +57,8 @@ int main(int argc, char *argv[]){
       		buffer1[count1] = 0;
       		//printf("%s", "fail");
       		//printf("%s", buffer1);
-      		fprintf(fp, "%s\n", "FAILED:");
-      		fprintf(fp, "%s\n", buffer1);
+      		fprintf(fp, "%s\n", "FAIL:");
+      		fprintf(fp, "%s", buffer1);
       		//write(file, "FAILED:", sizeof("FAILED:")+1);
       		//write(file, buffer1, count1+1);
 
@@ -72,7 +72,7 @@ int main(int argc, char *argv[]){
  	  		//printf("%s", buffer2);
       		//write(file, buffer2, count2+1);
       		fprintf(fp, "%s\n", "SUCCESS:");
-      		fprintf(fp, "%s\n", buffer2);
+      		fprintf(fp, "%s", buffer2);
    	 }
 
 		/*if((nbytes = read(fd[0],buffer, sizeof(buffer))) >= 0) {
