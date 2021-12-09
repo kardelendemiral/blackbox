@@ -68,7 +68,7 @@ int main(int argc, char *argv[]){
  	  		//printf("%s", "success");
  	  		//write(file, "SUCCESS:", sizeof("SUCCESS:")+1);
  	  		count2 = read(fdout[0], buffer2, sizeof(buffer2)-1);
- 	  		buffer1[count2] = 0;
+ 	  		buffer2[count2] = 0;
  	  		//printf("%d\n", count2);
  	  		//printf("%s", buffer2);
       		//write(file, buffer2, count2+1);
