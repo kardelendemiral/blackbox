@@ -64,6 +64,7 @@ int main(int argc, char *argv[]){
 
 
  	  	} else {
+ 	  		wait(NULL);
  	  		//printf("%s", "success");
  	  		//write(file, "SUCCESS:", sizeof("SUCCESS:")+1);
  	  		count2 = read(fdout[0], buffer2, sizeof(buffer2)-1);
@@ -84,8 +85,6 @@ int main(int argc, char *argv[]){
 			
 			printf("%d\n", nbytes);
 		}*/
-
-		wait(NULL);
 	}
 
 	
