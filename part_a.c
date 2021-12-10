@@ -37,6 +37,10 @@ int main(int argc, char *argv[]){
 		dup2(fderr[1],STDERR_FILENO);
 		dup2(fdin[0], STDIN_FILENO);
 
+		close(fderr[1]);
+		close(fdout[0]);
+		close(fdin[0]);
+
 		char* args[] = {argv[1], NULL};
 		execv(args[0], args);
 	} else {
@@ -88,7 +92,7 @@ int main(int argc, char *argv[]){
  	  		//printf("%s", "success");
  	  		//write(file, "SUCCESS:", sizeof("SUCCESS:")+1);
  	  		count2 = read(fdout[0], buffer2, sizeof(buffer2)-1);
- 	  		buffer1[count2] = 0;
+ 	  		buffer2[count2] = 0;
  	  		//printf("%d\n", count2);
  	  		//printf("%s", buffer2);
       		//write(file, buffer2, count2+1);
@@ -96,15 +100,6 @@ int main(int argc, char *argv[]){
       		fprintf(fp, "%s", buffer2);
    	 }
 
-		/*if((nbytes = read(fd[0],buffer, sizeof(buffer))) >= 0) {
-			if (sizeof(buffer) == 0){
-				write(file, "SUCCESS:", sizeof("SUCCESS:"));
-			} else {
-				write(file, "FAILED:", sizeof("FAILED:"));
-			}
-			
-			printf("%d\n", nbytes);
-		}*/
 	}
 
 	
