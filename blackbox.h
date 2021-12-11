@@ -14,35 +14,36 @@ extern "C" {
 #endif
 
 
-struct paths {
-	char *path1;
-	char *path2;
+struct arguments {
+	int num1;
+	int num2;
+	char path[200];
 };
-typedef struct paths paths;
+typedef struct arguments arguments;
 
 #define BLACKBOX_PROG 0x12345678
 #define BLACKBOX_VERS 1
 
 #if defined(__STDC__) || defined(__cplusplus)
 #define blackbox 1
-extern  int * blackbox_1(paths *, CLIENT *);
-extern  int * blackbox_1_svc(paths *, struct svc_req *);
+extern  char ** blackbox_1(arguments *, CLIENT *);
+extern  char ** blackbox_1_svc(arguments *, struct svc_req *);
 extern int blackbox_prog_1_freeresult (SVCXPRT *, xdrproc_t, caddr_t);
 
 #else /* K&R C */
 #define blackbox 1
-extern  int * blackbox_1();
-extern  int * blackbox_1_svc();
+extern  char ** blackbox_1();
+extern  char ** blackbox_1_svc();
 extern int blackbox_prog_1_freeresult ();
 #endif /* K&R C */
 
 /* the xdr functions */
 
 #if defined(__STDC__) || defined(__cplusplus)
-extern  bool_t xdr_paths (XDR *, paths*);
+extern  bool_t xdr_arguments (XDR *, arguments*);
 
 #else /* K&R C */
-extern bool_t xdr_paths ();
+extern bool_t xdr_arguments ();
 
 #endif /* K&R C */
 

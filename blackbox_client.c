@@ -5,14 +5,21 @@
  */
 
 #include "blackbox.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <fcntl.h>
+#include <string.h>
 
 
-void
-blackbox_prog_1(char *host, char *pathone, char *pathtwo)
+char*
+blackbox_prog_1(int num1, int num2, char *path, char *host)
 {
 	CLIENT *clnt;
-	int  *result_1;
-	paths  blackbox_1_arg;
+	char * *result_1;
+	arguments  blackbox_1_arg;
 
 #ifndef	DEBUG
 	clnt = clnt_create (host, BLACKBOX_PROG, BLACKBOX_VERS, "udp");
@@ -22,14 +29,14 @@ blackbox_prog_1(char *host, char *pathone, char *pathtwo)
 	}
 #endif	/* DEBUG */
 
-	blackbox_1_arg.path1 = pathone;
-	blackbox_1_arg.path2 = pathtwo;
+	blackbox_1_arg.num1 = num1;
+	blackbox_1_arg.num2 = num2;
+	strcpy(blackbox_1_arg.path, path);
 	result_1 = blackbox_1(&blackbox_1_arg, clnt);
-	if (result_1 == (int *) NULL) {
+	if (result_1 == (char **) NULL) {
 		clnt_perror (clnt, "call failed");
-	}
-	else {
-		printf("Result = %d\n", *result_1);
+	} else {
+		return *result_1;
 	}
 #ifndef	DEBUG
 	clnt_destroy (clnt);
@@ -42,11 +49,29 @@ main (int argc, char *argv[])
 {
 	char *host;
 
+	FILE *fp = fopen(argv[2], "a");
+	int file = open(argv[2], O_WRONLY | O_APPEND, 0777);
+	if (file == -1) {
+		return 2;
+	}
+
+	char *result;
+
+
+	int a;
+	int b;
+
+	scanf("%d", &a);
+	scanf("%d", &b);
+
 	if (argc < 4) {
-		printf ("usage: %s path_1 path_2 server_host\n", argv[0]);
+		printf ("usage: %s path1 path2 server_host\n", argv[0]);
 		exit (1);
 	}
-	host = argv[1];
-	blackbox_prog_1 (host, argv[2], argv[3]);
+	host = argv[3];
+	result = blackbox_prog_1 (a, b, argv[1], host);
+
+	fprintf(fp, "%s", result);
+
 exit (0);
 }

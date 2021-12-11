@@ -20,7 +20,7 @@ static void
 blackbox_prog_1(struct svc_req *rqstp, register SVCXPRT *transp)
 {
 	union {
-		paths blackbox_1_arg;
+		arguments blackbox_1_arg;
 	} argument;
 	char *result;
 	xdrproc_t _xdr_argument, _xdr_result;
@@ -32,8 +32,8 @@ blackbox_prog_1(struct svc_req *rqstp, register SVCXPRT *transp)
 		return;
 
 	case blackbox:
-		_xdr_argument = (xdrproc_t) xdr_paths;
-		_xdr_result = (xdrproc_t) xdr_int;
+		_xdr_argument = (xdrproc_t) xdr_arguments;
+		_xdr_result = (xdrproc_t) xdr_wrapstring;
 		local = (char *(*)(char *, struct svc_req *)) blackbox_1_svc;
 		break;
 

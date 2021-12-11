@@ -1,0 +1,10 @@
+SUCCESS:
+3
+FAIL:
+Negative numbers are not accepted for this blackbox
+SUCCESS:
+122
+SUCCESS:
+11
+FAIL:
+Negative numbers are not accepted for this blackbox
