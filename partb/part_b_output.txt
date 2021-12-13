@@ -1,1 +1,6 @@
-
+FAIL:
+Negative numbers are not accepted for this blackbox
+SUCCESS:
+21
+FAIL:
+Negative numbers are not accepted for this blackbox
