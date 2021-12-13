@@ -1,0 +1,16 @@
+SUCCESS:
+4
+SUCCESS:
+11
+FAIL:
+Negative numbers are not accepted for this blackbox
+SUCCESS:
+1246790112
+SUCCESS:
+1009
+SUCCESS:
+21
+FAIL:
+Negative numbers are not accepted for this blackbox
+SUCCESS:
+3
